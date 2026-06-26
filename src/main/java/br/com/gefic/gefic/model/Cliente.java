@@ -18,6 +18,8 @@ public class Cliente {
     private  String email;
     @Column(name = "endereço")
     private String endereco;
+    private String bairro;
+    private String cidade;
 
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
@@ -27,12 +29,14 @@ public class Cliente {
 
     }
 
-    public Cliente(Long id, String nome, String numeroTelefone, String email, String endereco) {
+    public Cliente(Long id, String nome, String numeroTelefone, String email, String endereco, String bairro, String cidade) {
         this.id = id;
         this.nome = nome;
         this.numeroTelefone = numeroTelefone;
         this.email = email;
         this.endereco = endereco;
+        this.bairro = bairro;
+        this.cidade = cidade;
     }
 
 
@@ -56,6 +60,14 @@ public class Cliente {
         return endereco;
     }
 
+    public String getBairro() {
+        return bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -76,9 +88,13 @@ public class Cliente {
         this.endereco = endereco;
     }
 
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
 
-
-
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
 }
 
 
