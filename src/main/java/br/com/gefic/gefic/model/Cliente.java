@@ -2,6 +2,7 @@ package br.com.gefic.gefic.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +13,12 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private  Long id;
+    @NotBlank
     private String nome;
     private String numeroTelefone;
     @Email
     private  String email;
-    @Column(name = "endereço")
+    @Column(name = "endereco")
     private String endereco;
     private String bairro;
     private String cidade;
