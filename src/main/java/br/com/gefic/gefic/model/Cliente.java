@@ -23,7 +23,7 @@ public class Cliente {
     private String bairro;
     private String cidade;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Pedido> pedidos = new ArrayList<>();
 
 

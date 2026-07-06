@@ -1,6 +1,7 @@
 package br.com.gefic.gefic.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.Date;
 
@@ -10,6 +11,8 @@ public class Pedido {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY )
     private Long id;
+    @NotBlank
+    private String nomeDoProduto;
     @Column(name = "Data_da_Compra")
     private Date dataDaCompra;
     @Column(name = "Data_da_Última_Troca")
@@ -25,17 +28,19 @@ public class Pedido {
 
     };
 
-    public Pedido(Long id, Date dataDaCompra, Date dataDaUltimaTroca, Date dataDoVencimento) {
+    public Pedido(Long id, Date dataDaCompra, Date dataDaUltimaTroca, Date dataDoVencimento, String nomeDoProduto) {
         this.id = id;
         this.dataDaCompra = dataDaCompra;
         this.dataDaUltimaTroca = dataDaUltimaTroca;
         this.dataDoVencimento = dataDoVencimento;
+        this.nomeDoProduto = nomeDoProduto;
     }
 
 
     public Long getId(){
         return id;
     }
+
 
     public Date getDataDaCompra() {
         return dataDaCompra;
@@ -47,6 +52,14 @@ public class Pedido {
 
     public Date getDataDoVencimento() {
         return dataDoVencimento;
+    }
+
+    public String getNomeDoProduto(){
+        return nomeDoProduto;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
     }
 
     public void setId(Long id){
@@ -65,5 +78,11 @@ public class Pedido {
         this.dataDoVencimento = dataDoVencimento;
     }
 
+    public void setNomeDoProduto(String nomeDoProduto) {
+        this.nomeDoProduto = nomeDoProduto;
+    }
 
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 }

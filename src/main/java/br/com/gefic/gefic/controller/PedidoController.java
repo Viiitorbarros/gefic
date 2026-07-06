@@ -1,10 +1,18 @@
 package br.com.gefic.gefic.controller;
 
 
+import br.com.gefic.gefic.dtos.PedidoRequestDto;
+import br.com.gefic.gefic.dtos.PedidoResponseDto;
+import br.com.gefic.gefic.model.Pedido;
 import br.com.gefic.gefic.service.PedidoService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+
+@RestController
+@RequestMapping("/pedido")
 public class PedidoController {
 
 
@@ -13,5 +21,24 @@ public class PedidoController {
     public PedidoController(PedidoService pedidoService ){
         this.pedidoService = pedidoService;
     }
+
+    @PostMapping
+    public PedidoResponseDto save (@RequestBody PedidoRequestDto pedidoRequestDto){
+
+        PedidoResponseDto novoPedido = pedidoService.save(pedidoRequestDto);
+
+        return novoPedido;
+
+    }
+
+    @GetMapping
+    public List<PedidoResponseDto> findAll(){
+
+        List<PedidoResponseDto> listPedidos = pedidoService.findAll();
+
+        return  listPedidos;
+
+    }
+
 
 }

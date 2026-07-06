@@ -24,7 +24,7 @@ public class ClienteService {
     }
 
     // Transformo um cliente em DTO
-    private ClienteResponseDto toResponseDto(Cliente cliente) {
+    private ClienteResponseDto toClienteResponseDto(Cliente cliente) {
         ClienteResponseDto dto = new ClienteResponseDto();
         dto.setNome(cliente.getNome());
         dto.setNumeroTelefone(cliente.getNumeroTelefone());
@@ -35,9 +35,11 @@ public class ClienteService {
         return dto;
     }
 
+
+    //Para Usar no controller
     public ClienteResponseDto findById(Long id){
         Cliente cliente = clienteRepository.findById(id).orElseThrow(()-> new RuntimeException("Cliente não Encontrado"));
-        ClienteResponseDto dto = toResponseDto(cliente);
+        ClienteResponseDto dto = toClienteResponseDto(cliente);
 
         return dto;
     }
@@ -59,7 +61,7 @@ public class ClienteService {
 
        // Gera um dto a partir do cliente salvo no banco
 
-       ClienteResponseDto dto = toResponseDto(clienteSalvo);
+       ClienteResponseDto dto = toClienteResponseDto(clienteSalvo);
 
        return dto;
 
@@ -69,8 +71,17 @@ public class ClienteService {
 
         List<Cliente> clientes = clienteRepository.findAll();
 
-        return clientes.stream().map(this :: toResponseDto).toList();
+        return clientes.stream().map(this :: toClienteResponseDto).toList();
 
     }
+
+    //Para usar no Pedido Service e nao no Controller
+    public Cliente buscarEntidadePorId(Long id){
+        Cliente cliente = clienteRepository.findById(id).orElseThrow(()-> new RuntimeException("Cliente não Encontrado"));
+
+
+        return cliente;
+    }
+
 
 }
