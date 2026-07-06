@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -71,6 +73,17 @@ public class PedidoService {
         List<Pedido> listPedidos = pedidoRepository.findAll();
 
         return listPedidos.stream().map(this :: toPedidoResponseDto).toList();
+
+    }
+
+
+    public List<PedidoResponseDto> buscarPedidosVencidos(){
+
+        List<Pedido> pedidosVencidos = pedidoRepository.findByDataDoVencimentoBefore(new Date());
+
+        return pedidosVencidos.stream()
+                .map(this::toPedidoResponseDto)
+                .toList();
 
     }
 

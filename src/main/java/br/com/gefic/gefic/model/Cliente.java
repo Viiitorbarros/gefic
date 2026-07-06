@@ -70,6 +70,14 @@ public class Cliente {
         return cidade;
     }
 
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }

@@ -40,5 +40,13 @@ public class PedidoController {
 
     }
 
+    @GetMapping("/vencidos")
+    public List<PedidoResponseDto> buscarPedidosVencidos(){
+
+        List<PedidoResponseDto> pedidosVencidos = pedidoService.buscarPedidosVencidos();
+
+        return pedidosVencidos;
+    }
+
 
 }
