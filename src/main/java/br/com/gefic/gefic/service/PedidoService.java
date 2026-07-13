@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PedidoService {
@@ -86,6 +87,50 @@ public class PedidoService {
                 .toList();
 
     }
+
+    public Pedido buscarPedidoId(Long id){
+
+       Pedido pedido = pedidoRepository.findById(id).orElseThrow(()-> new RuntimeException("Pedido não Encontrado"));
+
+
+        return pedido;
+    }
+
+
+
+    public PedidoResponseDto updatePedidos(PedidoRequestDto pedidoRequestDto, Long id){
+
+        Pedido pedido = buscarPedidoId(id);
+
+        pedido.setNomeDoProduto(pedidoRequestDto.getNomeDoProduto());
+        pedido.setDataDaCompra(pedidoRequestDto.getDataDaCompra());
+        pedido.setDataDaUltimaTroca(pedidoRequestDto.getDataDaUltimaTroca());
+        pedido.setDataDoVencimento(pedidoRequestDto.getDataDoVencimento());
+
+        Cliente cliente = clienteService.buscarEntidadePorId(pedidoRequestDto.getClienteId());
+
+        pedido.setCliente(cliente);
+
+        pedidoRepository.save(pedido);
+
+
+       PedidoResponseDto pedidoDto =  toPedidoResponseDto(pedido);
+
+        return pedidoDto;
+
+
+    }
+
+
+    public void deletePedido(Long id){
+
+        Pedido pedido = buscarPedidoId(id);
+
+        pedidoRepository.delete(pedido);
+
+    }
+
+
 
 
 }

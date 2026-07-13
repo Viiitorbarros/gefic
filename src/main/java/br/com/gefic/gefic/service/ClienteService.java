@@ -83,5 +83,34 @@ public class ClienteService {
         return cliente;
     }
 
+    //Update Nas informações do cliente
+
+    public ClienteResponseDto update(Long id, ClienteRequestDto clienteAtualizado ){
+
+        Cliente clienteExistente = buscarEntidadePorId(id);
+        clienteExistente.setEmail(clienteAtualizado.getEmail());
+        clienteExistente.setBairro(clienteAtualizado.getBairro());
+        clienteExistente.setCidade(clienteAtualizado.getCidade());
+        clienteExistente.setEndereco(clienteAtualizado.getEndereco());
+        clienteExistente.setNome(clienteAtualizado.getNome());
+        clienteExistente.setNumeroTelefone(clienteAtualizado.getNumeroTelefone());
+
+        clienteRepository.save(clienteExistente);
+
+       ClienteResponseDto clienteResponseDto = toClienteResponseDto(clienteExistente);
+
+       return clienteResponseDto;
+
+    }
+
+
+    public void deleteCliente (Long id){
+
+        Cliente cliente = buscarEntidadePorId(id);
+
+        clienteRepository.delete(cliente);
+
+    }
+
 
 }

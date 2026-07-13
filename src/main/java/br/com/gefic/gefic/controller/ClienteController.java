@@ -45,4 +45,27 @@ public class ClienteController {
 
     }
 
+
+    @PutMapping("/{id}")
+    public ClienteResponseDto updateCliente (@PathVariable Long id,@RequestBody ClienteRequestDto clienteRequestDto){
+
+        return clienteService.update(id, clienteRequestDto);
+
+
+    }
+
+
+    @DeleteMapping("/{id}")
+    public void deleteCliente(@PathVariable Long id){
+
+        clienteService.deleteCliente(id);
+
+    }
+
+
+
+
+
+
+
 }

@@ -49,4 +49,19 @@ public class PedidoController {
     }
 
 
+    @PutMapping("/{id}")
+    public PedidoResponseDto updatePedido(@RequestBody PedidoRequestDto pedidoRequestDto, @PathVariable Long id){
+
+       return pedidoService.updatePedidos(pedidoRequestDto, id);
+
+    }
+
+
+    @DeleteMapping("/{id}")
+    public void deletePedido(@PathVariable Long id){
+        pedidoService.deletePedido(id);
+
+    }
+
+
 }
