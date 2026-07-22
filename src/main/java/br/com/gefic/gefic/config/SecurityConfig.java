@@ -1,4 +1,4 @@
-package br.com.gefic.gefic.security;
+package br.com.gefic.gefic.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
