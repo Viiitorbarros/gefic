@@ -14,11 +14,11 @@ public class UserDatailsService implements UserDetailsService {
 
 
     private final UsuarioRepository usuarioRepository;
-    private final PasswordEncoder passwordEncoder;
 
-    public UserDatailsService (UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder){
+
+    public UserDatailsService (UsuarioRepository usuarioRepository){
         this.usuarioRepository = usuarioRepository;
-        this.passwordEncoder = passwordEncoder;
+
     }
 
     @Override
@@ -28,12 +28,5 @@ public class UserDatailsService implements UserDetailsService {
     }
 
 
-    public Usuario salvar(Usuario usuario){
-
-        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
-
-         return usuarioRepository.save(usuario);
-
-    }
 
 }

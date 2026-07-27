@@ -51,6 +51,17 @@ public class Usuario implements UserDetails {
         return true;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getRole() {
+        return role;
+    }
 
     public void setId(Long id) {
         this.id = id;
