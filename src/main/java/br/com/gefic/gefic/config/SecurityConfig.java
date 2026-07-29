@@ -46,10 +46,15 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
 
+                .headers(headers -> headers.frameOptions(frame -> frame.disable()))
+
                 .authorizeHttpRequests(auth -> auth
 
                         .requestMatchers("/login").permitAll()
+
                         .requestMatchers("/usuario").permitAll()
+
+                        .requestMatchers("/h2-console/**").permitAll()
 
                         .requestMatchers("/clientes/**")
                         .hasRole("ADMIN")
